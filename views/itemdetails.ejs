@@ -1,0 +1,23 @@
+<%- include("partials/header.ejs") %>
+
+<form action="/itemdetails" method="POST">
+    <label for="itemid">Item ID:</label>
+    <input type="text" name="itemid" id="itemid">
+    <br>
+    <label for="itemname">Item Name:</label>
+    <input type="text" name="itemname" id="itemname">
+    <br>
+    <label for="category">Category :</label>
+    <input type="text" name="category" id="category">
+    <br>
+    <label for="brand">Brand :</label>
+    <input type="text" name="brand" id="brand">
+    <br>
+    <label for="spec">Spec :</label>
+    <input type="text" name="spec" id="spec">
+    <br>
+    <button type="submit" class="btn btn-primary">Check Item Details</button>
+</form>
+
+  
+<%- include("partials/footer.ejs") %>

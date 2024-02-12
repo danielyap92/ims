@@ -1,0 +1,24 @@
+<%- include("partials/header.ejs") %>
+
+
+<form action="/stockcard" method="POST">
+    <label for="startdate">Start Date:</label>
+    <input type="date" id="startdate" name="startdate">
+    <br>
+    <label for="enddate">End Date:</label>
+    <input type="date" id="enddate" name="enddate">
+    <br>
+    <label for="itemid">Item ID:</label>
+    <input type="text" name="itemid" id="itemid">
+    <br>
+    <label for="itemname">Item Name:</label>
+    <input type="text" name="itemname" id="itemname">
+    <br>
+    <label for="brand">Brand :</label>
+    <input type="text" name="brand" id="brand">
+    <br>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+<%- include("partials/footer.ejs") %>

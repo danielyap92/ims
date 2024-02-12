@@ -1,0 +1,26 @@
+<%- include("partials/header.ejs") %>
+
+<table class="table table-striped table-hover">
+    <tr>
+      <th>Item ID</th>
+      <th>Item Name</th>
+      <th>Category</th>
+      <th>Brand</th>
+      <th>UOM</th>
+      <th>Spec</th>
+    </tr>
+    <% if (locals.entries) { %>
+    <tr>
+      <td><%=entries.id%></td>
+      <td><%=entries.name%></td>
+      <td><%=entries.category%></td>
+      <td><%=entries.brand%></td>
+      <td><%=entries.uom%></td>
+      <td><%=entries.spec%></td>
+    </tr>
+    <% } else { %>
+        <p> no record found ! </p>
+    <% } %>
+</table>
+  
+<%- include("partials/footer.ejs") %>
