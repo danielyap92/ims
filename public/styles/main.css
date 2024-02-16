@@ -45,3 +45,14 @@ body {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
+
+  /* disable arrow in number input */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+         -webkit-appearance: none;
+          margin: 0;
+  }
+
+  input[type=number] {
+      -moz-appearance: textfield;
+  }

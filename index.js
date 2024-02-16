@@ -29,6 +29,12 @@ app.get("/itemdetails", (req, res) => {
 
 app.post("/itemdetails", async (req, res) => {
     
+    // if no input, will not return all result
+    if ( (!req.body.itemid) && (!req.body.itemname) && (!req.body.category) && (!req.body.brand) && (!req.body.spec) ){
+      res.render("displaydetails.ejs");
+      return;
+    }
+
     if (req.body.itemid) { var id = `id = ${req.body.itemid} AND ` }
         else {var id = ``};
     if (req.body.itemname) { var name = `name LIKE '%${req.body.itemname}%' AND ` }
@@ -43,13 +49,16 @@ app.post("/itemdetails", async (req, res) => {
     const enquiry = id + name + category + brand + spec;
     console.log(enquiry);
 
-    // const result = await db.query("SELECT * FROM item_details WHERE id = 1 AND name LIKE '%pencil%' ");
-    const result = await db.query(`SELECT * FROM item_details WHERE ${enquiry}`);
-    let itemdetails = result.rows[0];
-
-    // console.log(result.rows);
+    try {
+      // const result = await db.query("SELECT * FROM item_details WHERE id = 1 AND name LIKE '%pencil%' ");
+      const result = await db.query(`SELECT * FROM item_details WHERE ${enquiry}`);
+      let itemdetails = result.rows[0];
+      res.render("displaydetails.ejs", {entries:itemdetails});
+      
+    } catch (error) {
+      console.log(error); 
+    }
     
-    res.render("displaydetails.ejs", {entries:itemdetails});
 });
 
 app.get("/stockcard", (req, res) => {
