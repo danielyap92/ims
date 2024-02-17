@@ -1,13 +1,7 @@
 <%- include("partials/header.ejs") %>
 
-
-<form action="/stockcard" method="POST">
-    <label for="startdate">Start Date:</label>
-    <input type="date" id="startdate" name="startdate" >
-    <br>
-    <label for="enddate">End Date:</label>
-    <input type="date" id="enddate" name="enddate">
-    <br>
+<h3>Search Stock</h3>
+<form action="/stocktransc" method="POST">
     <label for="itemid">Item ID:</label>
     <input type="number" name="itemid" id="itemid">
     <br>
@@ -17,7 +11,7 @@
     <label for="brand">Brand :</label>
     <input type="text" name="brand" id="brand">
     <br>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Search</button>
 </form>
 
 

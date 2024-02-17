@@ -1,0 +1,35 @@
+<%- include("partials/header.ejs") %>
+
+<table class="table table-striped table-hover">
+    <tr>
+      <th>Transaction Date</th>
+      <th>Item ID</th>
+      <th>Item Name</th>
+      <th>Brand</th>
+      <th>Transaction Type</th>
+      <th>Stock In Qty</th>
+      <th>Stock Out Qty</th>
+      <th>Stock Balance Qty</th>
+      <th>UOM</th>
+    </tr>
+    <% if (locals.entries) { %>
+        <% for (let x of entries){%>
+    <tr>
+      <td><%=x.transaction_time%></td>
+      <td><%=x.item_id%></td>
+      <td><%=x.name%></td>
+      <td><%=x.brand%></td>
+      <td><%=x.type%></td>
+      <td><%=x.stock_in%></td>
+      <td><%=x.stock_out%></td>
+      <td><%=x.stock_balance%></td>
+      <td><%=x.uom%></td>
+    </tr>
+    <% };} else { %>
+        <p> no record found ! </p>
+    <% } %>
+</table>
+
+
+
+<%- include("partials/footer.ejs") %>

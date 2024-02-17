@@ -1,0 +1,29 @@
+<%- include("partials/header.ejs") %>
+
+<h3>Search Stock</h3>
+<table class="table table-striped table-hover">
+    <tr>
+      <th>Item ID</th>
+      <th>Item Name</th>
+      <th>Brand</th>
+      <th>Action</th>
+    </tr>
+    <% if (locals.entries) { %>
+        <% for (let x of entries){%>
+    <tr>
+      <td><%=x.id%></td>
+      <td><%=x.name%></td>
+      <td><%=x.brand%></td>
+      <td><form action="/trscItem" method="POST">
+        <input type="hidden" name="id" value=<%=x.id%> >
+        <input type="hidden" name="name" value=<%=x.name%> >
+        <input type="hidden" name="brand" value=<%=x.brand%> >
+        <button type="submit" class="btn btn-primary">Select</button>
+        </form></td>
+    </tr>
+    <% };} else { %>
+        <p> no record found ! </p>
+    <% } %>
+</table>
+
+<%- include("partials/footer.ejs") %>

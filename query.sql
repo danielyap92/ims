@@ -32,7 +32,8 @@ CREATE TABLE stock_card (
   transaction_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   type TEXT NOT NULL,
   stock_in INTEGER,
-  stock_out INTEGER
+  stock_out INTEGER,
+  stock_balance INTEGER
 );
 
 -- use insert method for stock card
@@ -45,3 +46,19 @@ VALUES (1, 'stock in', 100);
 INSERT INTO stock_card (item_id, type, stock_out)
 VALUES (1, 'stock out', 50);
 
+INSERT INTO stock_card (item_id, type, stock_balance)
+VALUES (2, 'Created stock card', 0);
+
+-- query stock card
+SELECT * FROM stock_card
+JOIN item_details ON stock_card.item_id = item_details.id
+WHERE item_details.id = 1
+AND stock_card.transaction_time BETWEEN '%2024-01-01%' AND '%2024-12-31%'
+AND item_details.name LIKE '%'
+AND item_details.brand LIKE '%'
+ORDER BY transaction_time
+
+SELECT stock_balance FROM stock_card
+WHERE item_id = 1
+ORDER BY transaction_time DESC
+LIMIT 1;

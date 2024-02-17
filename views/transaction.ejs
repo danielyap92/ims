@@ -1,0 +1,55 @@
+<%- include("partials/header.ejs") %>
+
+<h3>Search Stock</h3>
+<table class="table table-striped table-hover">
+    <tr>
+      <th>Item ID</th>
+      <th>Item Name</th>
+      <th>Brand</th>
+    </tr>
+    <tr>
+      <td><%=entries.id%></td>
+      <td><%=entries.name%></td>
+      <td><%=entries.brand%></td>
+    </tr>
+</table>
+
+<form action="/transaction" method="POST">
+<label>Transaction type:</label>
+<input type="hidden" name="id" id="id" value=<%=entries.id%>>
+<input type="radio" id="stockin" name="type" value="stockin" onclick="inEnable()">
+<label for="stockin">Stock In   </label>
+<input type="radio" id="stockout" name="type" value="stockout" onclick="outEnable()">
+<label for="stockout">Stock Out   </label>
+<input type="radio" id="adjustment" name="type" value="adjustment" onclick="adjEnable()">
+<label for="adjustment">Adjustment   </label>
+<br>
+<label for="inqty">Stock in Qty</label>
+<input type="number" name="inqty" id="inqty" disabled="true">
+<br>
+<label for="outqty">Stock out Qty</label>
+<input type="number" name="outqty" id="outqty" disabled="true">
+<br>
+<button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<script>
+    
+    function inEnable() {
+        document.getElementById("inqty").disabled=false;
+        document.getElementById("outqty").disabled=true;
+    }
+    
+    function outEnable() {
+        document.getElementById("inqty").disabled=true;
+        document.getElementById("outqty").disabled=false;
+    }
+
+    function adjEnable() {
+        document.getElementById("inqty").disabled=false;
+        document.getElementById("outqty").disabled=false;
+    }
+
+</script>
+
+<%- include("partials/footer.ejs") %>

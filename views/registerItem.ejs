@@ -1,0 +1,26 @@
+<%- include("partials/header.ejs") %>
+
+<h1>Register New Item</h1>
+<h3>Please key in item details as follow:</h3>
+
+<form action="/registerItem" method="POST">
+    <label for="itemname">Item Name:</label>
+    <input type="text" name="itemname" id="itemname" required="required">
+    <br>
+    <label for="category">Category :</label>
+    <input type="text" name="category" id="category" required="required">
+    <br>
+    <label for="brand">Brand :</label>
+    <input type="text" name="brand" id="brand" required="required">
+    <br>
+    <label for="uom">UOM :</label>
+    <input type="text" name="uom" id="uom" required="required">
+    <br>
+    <label for="spec">Spec :</label>
+    <input type="text" name="spec" id="spec" style="height: 80px;" required="required">
+    <br>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+
+  
+<%- include("partials/footer.ejs") %>
