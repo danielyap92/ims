@@ -183,8 +183,10 @@ app.post("/stocktransc", async (req, res) => {
 
 });
 
-app.post("/trscItem", (req, res) => {
-  res.render("transaction.ejs", {entries:req.body})
+app.post("/trscItem", async (req, res) => {
+  const entry = await db.query(`SELECT * FROM item_details JOIN stock_card ON stock_card.item_id = item_details.id
+  WHERE item_details.id = $1 ORDER BY transaction_time DESC LIMIT 1`, [req.body.id]);
+  res.render("transaction.ejs", {entries:entry.rows[0]});
 });
 
 app.post("/transaction", async (req, res) => {
@@ -201,17 +203,25 @@ app.post("/transaction", async (req, res) => {
   switch (req.body.type) {
     case 'stockin':
       let stockInQty = Number(req.body.inqty);
-      let updatedBalance = stockBalance + stockInQty;
-      // const entry = await db.query(`INSERT INTO stock_card (item_id, type, stock_in, stock_balance)
-      // VALUES ($1, 'stock in', $2, $3) RETURN *;`,[itemID, stockInQty, updatedBalance]);
-      console.log([itemID, stockInQty, updatedBalance]);
-
+      let addBalance = stockBalance + stockInQty;
+      const inEntry = await db.query(`INSERT INTO stock_card (item_id, type, stock_in, stock_balance)
+      VALUES ($1, 'stock in', $2, $3) RETURNING *;`,[itemID, stockInQty, addBalance]);
+      res.render("updatedStockCard.ejs",{entries:inEntry.rows[0]});
       break;
     case 'stockout':
-      console.log('stock out now')
+      let stockOutQty = Number(req.body.outqty);
+      let deductBalance = stockBalance - stockOutQty;
+      const outEntry = await db.query(`INSERT INTO stock_card (item_id, type, stock_out, stock_balance)
+      VALUES ($1, 'stock out', $2, $3) RETURNING *;`,[itemID, stockOutQty, deductBalance]);
+      res.render("updatedStockCard.ejs",{entries:outEntry.rows[0]});
       break;
     case 'adjustment':
-      console.log('adjustment now')
+      let adjIn = Number(req.body.inqty);
+      let adjOut = Number(req.body.outqty);
+      let updatedBalance = stockBalance + adjIn - adjOut;
+      const adjEntry = await db.query(`INSERT INTO stock_card (item_id, type, stock_in, stock_out, stock_balance)
+      VALUES ($1, 'adjustment', $2, $3, $4) RETURNING *;`,[itemID, adjIn , adjOut, updatedBalance]);
+      res.render("updatedStockCard.ejs",{entries:adjEntry.rows[0]});
       break;
     default:
       console.log('error has occurred')
