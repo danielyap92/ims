@@ -46,8 +46,8 @@ VALUES (1, 'stock in', 100);
 INSERT INTO stock_card (item_id, type, stock_out)
 VALUES (1, 'stock out', 50);
 
-INSERT INTO stock_card (item_id, type, stock_balance)
-VALUES (2, 'Created stock card', 0);
+INSERT INTO stock_card (item_id, type, stock_in, stock_balance)
+VALUES ($1, 'stock in', $2, $3) RETURN *;
 
 -- query stock card
 SELECT * FROM stock_card

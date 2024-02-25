@@ -1,6 +1,8 @@
 <%- include("partials/header.ejs") %>
+<p>Transaction Record</p>
 
-<table class="table table-striped table-hover">
+<div id="stockCardDetails">
+  <table class="table table-striped table-hover">
     <tr>
       <th>Transaction Date</th>
       <th>Item ID</th>
@@ -12,8 +14,7 @@
       <th>Stock Balance Qty</th>
       <th>UOM</th>
     </tr>
-    <% if (locals.entries) { %>
-        <% for (let x of entries){%>
+    <% if (locals.entries) { %> <% for (let x of entries){%>
     <tr>
       <td><%=x.transaction_time%></td>
       <td><%=x.item_id%></td>
@@ -26,10 +27,23 @@
       <td><%=x.uom%></td>
     </tr>
     <% };} else { %>
-        <p> no record found ! </p>
+    <p>no record found !</p>
     <% } %>
-</table>
+  </table>
+</div>
 
+<button onclick="printPageArea('stockCardDetails')">Print</button>
 
+<script>
+  function printPageArea(areaID) {
+    var printContent = document.getElementById(areaID).innerHTML;
+    var originalContent = document.body.innerHTML;
+    document.body.innerHTML = printContent;
+    document.title = "Transaction Record";
+    window.print();
+    document.body.innerHTML = originalContent;
+    document.title = "IMS";
+  }
+</script>
 
 <%- include("partials/footer.ejs") %>

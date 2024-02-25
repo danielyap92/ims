@@ -3,24 +3,24 @@
 <h1>You have successfully updated the entry!</h1>
 
 <table class="table table-striped table-hover">
-    <tr>
-      <th>Transaction Date</th>
-      <th>Item ID</th>
-      <th>Type</th>
-      <th>Stock In Qty</th>
-      <th>Stock Out Qty</th>
-      <th>Stock Balance Qty</th>
-    </tr>
-    <% if (locals.entries) { %>
-    <tr>
-      <td><%=entries.transaction_time%></td>
-      <td><%=entries.item_id%></td>
-      <td><%=entries.type%></td>
-      <td><%=entries.stock_in%></td>
-      <td><%=entries.stock_out%></td>
-      <td><%=entries.stock_balance%></td>
-    </tr>
-    <% } %>
+  <tr>
+    <th>Transaction Date</th>
+    <th>Item ID</th>
+    <th>Type</th>
+    <th>Stock In Qty</th>
+    <th>Stock Out Qty</th>
+    <th>Stock Balance Qty</th>
+  </tr>
+  <% if (locals.entries) { %>
+  <tr>
+    <td><%=entries.transaction_time%></td>
+    <td><%=entries.item_id%></td>
+    <td><%=entries.type%></td>
+    <td><%=entries.stock_in%></td>
+    <td><%=entries.stock_out%></td>
+    <td><%=entries.stock_balance%></td>
+  </tr>
+  <% } %>
 </table>
 
 <a href="/">Click here to return to homepage</a>
