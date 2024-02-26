@@ -34,20 +34,30 @@ Features:
 ## Setup IMS in your environment
 1. Use the SQL command in CreateDB.sql to create the postgresql DB table.
 2. Create an .env file with your postgresql setting :
-> DB_USER=??????
->DB_PASSWORD=??????
->DB_HOST=??????
->DB_PORT=??????
->DB_DATABASE=Your DB Name
+
+    ```
+    DB_USER=??????  
+    DB_PASSWORD=??????  
+    DB_HOST=??????  
+    DB_PORT=?????? 
+    DB_DATABASE=Your DB Name
+    ```
+
 3. If you do not want to put the postgresql setting in .env, you can straight edit the postgresql setting in index.js, line 12:
->const  db  =  new pg.Client({
->user: ??????,
->host: ??????,
->database: Your DB Name,
->password: ??????,
->port: ??????,
->});
->db.connect();
+
+    ```
+    const  db  =  new pg.Client({
+    user: ??????,
+    host: ??????,
+    database: Your DB Name,
+    password: ??????,
+    port: ??????,
+    });
+    db.connect();
+    ```
+
+
+
 4. Run the index.js and server will run on port http://localhost:3000
 
 ## Feedback issue and contact
